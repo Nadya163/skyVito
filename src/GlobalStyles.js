@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
 * {
   margin: 0;
   padding: 0;
@@ -36,12 +36,6 @@ ul li {
   font-weight: 400;
   font-style: normal;
 }
-${'' /* @font-face {
-  font-family: 'StratosSkyeng';
-  src: local("StratosSkyeng"), local("StratosSkyeng"), url("../fonts/StratosSkyeng.woff2") format("woff2"), url("../fonts/StratosSkyeng.woff") format("woff"), url("../fonts/StratosSkyeng.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-} */}
 
 html,
 body {
@@ -57,3 +51,5 @@ a {
   font-family: 'Roboto', sans-serif;
 }
 `;
+
+export default GlobalStyles;

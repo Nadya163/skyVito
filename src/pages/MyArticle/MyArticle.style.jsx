@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MainArtic = styled.div`
     max-width: 1178px;
@@ -146,45 +146,45 @@ export const ArticlePrice = styled.p`
 `;
 
 export const ArticleBtnBlock = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 `;
 
 export const ArticleBtnRedact = styled.button`
-  background-color: #009EE4;
-  border-radius: 6px;
-  border: 1px solid #009EE4;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
-  width: 189px;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    width: 189px;
     margin-right: 10px;
     &:hover {
-  background-color: #0080C1;
-}
+        background-color: #0080c1;
+    }
 `;
 
 export const ArticleBtnRemove = styled.button`
-  background-color: #009EE4;
-  border-radius: 6px;
-  border: 1px solid #009EE4;
-  height: 50px;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  color: #FFFFFF;
-  font-family: 'Roboto', sans-serif;
-  width: 225px;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+    height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    width: 225px;
     margin-right: 10px;
     &:hover {
-  background-color: #0080C1;
-}
+        background-color: #0080c1;
+    }
 `;
 
 export const ArticleAuthor = styled.div`

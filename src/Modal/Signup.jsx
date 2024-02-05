@@ -1,4 +1,4 @@
-import * as S from "./Modal.styled";
+import * as S from './Modal.styled';
 
 export default function Signup() {
     return (
@@ -51,7 +51,7 @@ export default function Signup() {
                         <S.ModalBtnEnter id="SignUpEnter">
                             <S.BtnEnterText href="/">
                                 Зарегистрироваться
-                            </S.BtnEnterText>{" "}
+                            </S.BtnEnterText>{' '}
                         </S.ModalBtnEnter>
                     </S.ModalFormLogin>
                 </S.ModalBlock>

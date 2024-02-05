@@ -1,14 +1,14 @@
+import { Link } from 'react-router-dom';
 import * as S from './Main.style';
 import Cards from '../../components/Cards/Cards';
-import Signup from '../../components/modal/Signup';
 
 export default function Main() {
     return (
         <main>
             <S.MainSearch>
-                <a href="#" target="_blank">
+                <Link to="/" target="_blank">
                     <S.SearchLogoImg src="../img/Logo.svg" alt="logo" />
-                </a>
+                </Link>
                 {/* <a class="search__logo-mob-link" href="#" target="_blank">
                         <img class="search__logo-mob-img" src="img/logo-mob.png" alt="logo" />
                     </a> */}
@@ -30,4 +30,4 @@ export default function Main() {
             </S.MainContainer>
         </main>
     );
-};
+}

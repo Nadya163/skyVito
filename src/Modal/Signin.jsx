@@ -1,4 +1,4 @@
-import * as S from "./Modal.styled";
+import * as S from './Modal.styled';
 
 export default function Signin() {
     return (

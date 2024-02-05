@@ -44,11 +44,12 @@
         "prettier/prettier": [
             "error",
             {
-                "semi": "never",
+                // "semi": "false",
                 "singlequote": true,
                 "parser": "flow",
                 "endOfLine": "auto"
             }
-        ]
+        ],
+        "no-param-reassign": ["error", { "props": false }]
     }
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Cards from '../../components/Cards/Cards';
 import LogoButton from '../../components/LogoButton/LogoButton';
 import * as S from './Profile.style';
@@ -14,9 +15,9 @@ export default function Profile() {
                         <S.ProfileSettings>
                             <S.SettingsLeft>
                                 <S.SettingsImg>
-                                    <a href="" target="_self">
+                                    <Link to="/" target="_self">
                                         <img src="#" alt="" />
-                                    </a>
+                                    </Link>
                                 </S.SettingsImg>
                                 <S.SettingsChangePhoto href="" target="_self">
                                     Заменить

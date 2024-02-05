@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Cards from '../../components/Cards/Cards';
 import LogoButton from '../../components/LogoButton/LogoButton';
 import * as S from './SellerProfile.style';
@@ -13,9 +14,9 @@ export default function SellerProfile() {
                         <S.ProfileSellSeller>
                             <S.SellerLeft>
                                 <S.SellerImg>
-                                    <a href="" target="_self">
+                                    <Link to="/" target="_self">
                                         <img src="#" alt="" />
-                                    </a>
+                                    </Link>
                                 </S.SellerImg>
                             </S.SellerLeft>
                             <S.SellerRight>

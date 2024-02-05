@@ -516,6 +516,7 @@ export const BtnEnterText = styled.a`
     line-height: 24px;
     letter-spacing: -0.05px;
 `;
+
 export const BtnSignupText = styled.a`
     color: #000;
     font-variant-numeric: lining-nums proportional-nums;
