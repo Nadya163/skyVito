@@ -7,17 +7,21 @@ export const adsQuery = createApi({
     endpoints: (build) => ({
         getAllAds: build.query({
             // Получить все объявления
-            query: () => `/ads`,
-            providesTags: (result) =>
-                result
-                    ? [
-                          ...result.map(({ id }) => ({
-                              type: 'Ads',
-                              id,
-                          })),
-                          { type: 'Ads', id: 'LIST' },
-                      ]
-                    : [{ type: 'Ads', id: 'LIST' }],
+            query: () => ({
+                url: '/ads',
+                method: 'GET',
+            }),
+            providesTags: ['ADS'],
+            // providesTags: (result) =>
+            //     result
+            //         ? [
+            //               ...result.map(({ id }) => ({
+            //                   type: 'Ads',
+            //                   id,
+            //               })),
+            //               { type: 'Ads', id: 'LIST' },
+            //           ]
+            //         : [{ type: 'Ads', id: 'LIST' }],
         }),
         // createAds: build.mutation({
         //     // Создать объявение
@@ -148,7 +152,7 @@ export const adsQuery = createApi({
 });
 
 export const {
-    useGetAllAds,
+    useGetAllAdsQuery,
     // useCreateAds,
     // useGetAllAdsUsers,
     // useCreateAdsWithoutImg,

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import * as S from './Cards.style';
-import { useGetAllAds } from '../../ApiService/ApiAds';
+import { useGetAllAdsQuery } from '../../ApiService/ApiAds';
 
 export default function Cards() {
-    const { data } = useGetAllAds();
+    const { data: dataAds } = useGetAllAdsQuery();
 
-    console.log('ads', data);
+    console.log('ads', dataAds);
+
     return (
         <S.ContentCards>
             <S.CardsItem>
