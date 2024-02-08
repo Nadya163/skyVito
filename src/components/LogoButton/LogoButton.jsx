@@ -11,7 +11,7 @@ export default function LogoButton() {
         <S.MainContainer>
             <S.MainMenu>
                 <S.MenuLogoLink href="" target="_blank">
-                    <S.MenuLogoImg src="img/logo.png" alt="logo" />
+                    <S.MenuLogoImg src="../img/logo.png" alt="logo" />
                 </S.MenuLogoLink>
                 <S.MenuForm action="#">
                     <S.MenuBtnSerch

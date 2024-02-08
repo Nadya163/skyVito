@@ -16,7 +16,7 @@ export const ArticContent = styled.div`
     align-items: top;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
-    justify-content: flex-start;
+    justify-content: center;
 `;
 
 export const ArticleLeft = styled.div`

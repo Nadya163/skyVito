@@ -1,9 +1,26 @@
-import { Link } from 'react-router-dom';
-import Cards from '../../components/Cards/Cards';
+import { Link, useNavigate } from 'react-router-dom';
 import LogoButton from '../../components/LogoButton/LogoButton';
 import * as S from './Profile.style';
+import { resetAuth } from '../../Store/Redux/AuthSlice';
+// import {
+//     useGetAllAdsQuery,
+//     useGetAllAdsUsersQuery,
+// } from '../../ApiService/ApiAds';
 
 export default function Profile() {
+    const navigate = useNavigate();
+    // const params = useParams();
+    // const { data } = useGetAllAdsQuery(params.id);
+    // const { cardAsdIs } = useGetAllAdsUsersQuery();
+    // const chosenItems = data?.filter((item) => item.id === Number(params.id));
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        resetAuth();
+        navigate('/login');
+        console.log(localStorage.removeItem('user'));
+    };
+
     return (
         <main>
             <LogoButton />
@@ -79,15 +96,19 @@ export default function Profile() {
                                     >
                                         Сохранить
                                     </S.SettingsBtn>
+                                    <S.SettingsBtn
+                                        type="button"
+                                        id="settings-btn"
+                                        onClick={handleLogout}
+                                    >
+                                        Выход
+                                    </S.SettingsBtn>
                                 </S.SettingsForm>
                             </S.SettingsRight>
                         </S.ProfileSettings>
                     </S.ProfileContent>
                 </S.MainProfile>
                 <S.MainTitle>Мои товары</S.MainTitle>
-                <S.MainContent>
-                    <Cards />
-                </S.MainContent>
             </S.MainContent>
         </main>
     );

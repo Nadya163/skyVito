@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import * as S from './Signup.style';
 import { SignupApi } from '../../ApiService/ApiAuth';
 import { useGetTokenMutation } from '../../ApiService/ApiService';
@@ -15,6 +16,15 @@ export default function Signup() {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [city, setCity] = useState('');
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+        // watch,
+        reset,
+    } = useForm({
+        mode: 'onBlur',
+    });
 
     // console.log(getToken);
 
@@ -24,10 +34,20 @@ export default function Signup() {
             .then((token) => {
                 dispatch(
                     setAuth({
-                        access: token.access,
-                        refresh: token.refresh,
+                        access: token?.access_token,
+                        refresh: token?.refresh_token,
                     }),
                 );
+                localStorage.setItem(
+                    'access_token',
+                    token?.access_token.toString(),
+                );
+                localStorage.setItem(
+                    'refresh_token',
+                    token?.refresh_token.toString(),
+                );
+                console.log(localStorage.getItem('access_token'));
+                console.log(localStorage.getItem('refresh_token'));
             })
             .catch((error) => {
                 return error;
@@ -47,7 +67,6 @@ export default function Signup() {
             .then((response) => {
                 localStorage.setItem('user', JSON.stringify(response));
                 console.log('user', JSON.stringify(response));
-                navigate('/profile');
             })
             .catch((error) => {
                 error(error.message);
@@ -55,15 +74,25 @@ export default function Signup() {
             .finally(() => {
                 responseToken();
             });
+        navigate('/profile');
+        reset();
     };
+
+    // const validPassword = (value) => {
+    //     const password = watch('password');
+    //     if (value === password) {
+    //         return true;
+    //     }
+    //     return false;
+    // };
 
     return (
         <S.Wrapper>
             <S.ContainerSignup>
                 <S.ModalBlock>
-                    <S.ModalFormLogin id="formLogUp" action="#">
+                    <S.ModalFormLogin onSubmit={handleSubmit}>
                         <S.ModalLogo>
-                            <Link to="/signin">
+                            <Link to="/login">
                                 <S.ModalLogoImg
                                     src="../img/logo_modal.png"
                                     alt="logo"
@@ -71,26 +100,50 @@ export default function Signup() {
                             </Link>
                         </S.ModalLogo>
                         <S.ModalInputLogin
+                            {...register('email', {
+                                required: true,
+                            })}
                             type="email"
-                            name="login"
-                            id="loginReg"
                             placeholder="email"
                             onChange={(e) => setEmail(e.target.value)}
                         />
+                        <S.ErrorDiv>
+                            {errors?.email && (
+                                <p>Поле обзательное к заполнения</p>
+                            )}
+                        </S.ErrorDiv>
                         <S.ModalInputLogin
+                            {...register('password', {
+                                required: 'Поле обязательно к заполнению.',
+                                onChange: (event) => {
+                                    setPassword(event.target.value);
+                                },
+                            })}
                             type="password"
-                            name="password"
-                            id="passwordFirst"
                             placeholder="Пароль"
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        {errors?.password && (
+                            <S.ErrorDivEnd>
+                                {errors?.password?.message}
+                            </S.ErrorDivEnd>
+                        )}
                         <S.ModalInputLogin
+                            {...register('repeatPassword', {
+                                required: 'Поле обязательно к заполнению.',
+                                onChange: (event) => event.target.value,
+                                // validate: validPassword,
+                            })}
                             type="password"
-                            name="password"
-                            id="passwordSecond"
                             placeholder="Повторите пароль"
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        {errors?.repeatPassword && (
+                            <S.ErrorDiv>
+                                {errors?.repeatPassword?.message ||
+                                    'Пароли не совпадают.'}
+                            </S.ErrorDiv>
+                        )}
                         <S.ModalInputLogin
                             type="text"
                             name="first-name"

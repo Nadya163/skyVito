@@ -1,22 +1,8 @@
 import styled from 'styled-components';
 
-export const MainH2 = styled.h2`
-    font-style: normal;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 42px;
-    color: #000000;
-    margin-bottom: 30px;
-`;
-
 export const MainProfileSell = styled.div`
     width: 100%;
     padding: 0 0 70px;
-`;
-
-export const MainContent = styled.div`
-    max-width: 1178px;
-    margin: 0 auto;
 `;
 
 export const ProfileSellContent = styled.div`
@@ -54,6 +40,17 @@ export const SellerImg = styled.div`
     height: 170px;
     border-radius: 50%;
     background-color: #f0f0f0;
+    & img {
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+    }
+`;
+
+export const SellerImges = styled.img`
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
 `;
 
 export const SellerRight = styled.div`
@@ -103,36 +100,5 @@ export const SellerBtn = styled.button`
         display: block;
         font-size: 14px;
         font-weight: 400;
-    }
-`;
-
-export const MainTitle = styled.h3`
-    margin-bottom: 20px;
-    font-size: 32px;
-    line-height: 70px;
-    font-weight: 500;
-    color: #000000;
-`;
-
-export const ContentCards = styled.div`
-    max-width: 1200px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 270px);
-    grid-auto-rows: 441px;
-    grid-gap: 40px 22px;
-    justify-content: center;
-    height: 922px;
-    overflow-y: scroll;
-    scrollbar-color: #d9d9d9;
-
-    &::-webkit-scrollbar {
-        width: 0px;
-        background-color: #009ee4;
-    }
-
-    &::-webkit-scrollbar-thumb {
-        background-color: #0080c1;
-        border-radius: 1px;
     }
 `;

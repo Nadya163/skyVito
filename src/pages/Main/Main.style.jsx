@@ -87,5 +87,52 @@ export const MainH2 = styled.h2`
 export const MainContent = styled.div`
     width: 100%;
     margin: 0 auto;
+    overflow-y: hidden;
+`;
+
+export const ContentCards = styled.div`
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 270px);
+    grid-auto-rows: 441px;
+    grid-gap: 40px 22px;
+    justify-content: center;
+    height: 922px;
+    overflow-y: scroll;
+    scrollbar-color: #d9d9d9;
+
+    &::-webkit-scrollbar {
+        width: 0px;
+        background-color: #009ee4;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #0080c1;
+        border-radius: 1px;
+    }
+`;
+
+export const CardsItem = styled.div`
+    margin: 0;
+    -webkit-box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: scale(1.05);
+    }
+`;
+
+export const CardsCard = styled.div`
+    width: 270px;
+    height: 441px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    ${'' /* flex-direction: column; */}
 `;
 // export const  = styled.div;

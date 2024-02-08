@@ -1,31 +1,59 @@
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import * as S from './Main.style';
-import Cards from '../../components/Cards/Cards';
+import Cards from '../../components/Array/Cards/Cards';
+import Search from '../../components/Search/Search';
+import { useGetAllAdsQuery } from '../../ApiService/ApiAds';
+import {
+    selectSearchItem,
+    selectTimestamp,
+} from '../../Store/Selector/Selector';
+import { formatDate } from '../../Store/Redux/DataSlise';
+import { setAllAds, setArticleItem } from '../../Store/Redux/AdsSlice';
 
 export default function Main() {
+    const dispatch = useDispatch();
+    const { data } = useGetAllAdsQuery();
+    const timestamp = useSelector(selectTimestamp);
+    formatDate(timestamp);
+    const searchItem = useSelector(selectSearchItem);
+
+    useEffect(() => {
+        dispatch(setAllAds(data));
+    }, []);
+
+    const handleArticleClick = (item) => {
+        dispatch(setArticleItem(item));
+    };
+
+    const searchItemAds = data?.filter((item) => {
+        const matchesTitle = item.title
+            .toLowerCase()
+            .includes(searchItem.toLowerCase());
+        const matchesCity = item.user.city
+            .toLowerCase()
+            .includes(searchItem.toLowerCase());
+
+        return matchesTitle || matchesCity;
+    });
+
+    // console.log(data);
+
     return (
         <main>
-            <S.MainSearch>
-                <Link to="/" target="_blank">
-                    <S.SearchLogoImg src="../img/Logo.svg" alt="logo" />
-                </Link>
-                {/* <a class="search__logo-mob-link" href="#" target="_blank">
-                        <img class="search__logo-mob-img" src="img/logo-mob.png" alt="logo" />
-                    </a> */}
-                <S.SearchForm action="#">
-                    <S.SearchText
-                        type="search"
-                        placeholder="Поиск по объявлениям"
-                        name="search"
-                    />
-                    {/* <input class="search__text-mob" type="search" placeholder="Поиск" name="search-mob" /> */}
-                    <S.SearchBtn type="button">Найти</S.SearchBtn>
-                </S.SearchForm>
-            </S.MainSearch>
+            <Search />
             <S.MainContainer>
                 <S.MainH2>Объявления</S.MainH2>
                 <S.MainContent>
-                    <Cards />
+                    <S.ContentCards>
+                        {searchItemAds?.map((item) => (
+                            <Cards
+                                key={item.id}
+                                item={item}
+                                handleArticleClick={handleArticleClick}
+                            />
+                        ))}
+                    </S.ContentCards>
                 </S.MainContent>
             </S.MainContainer>
         </main>

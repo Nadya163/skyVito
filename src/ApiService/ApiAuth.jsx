@@ -1,11 +1,4 @@
-export async function SignupApi({
-    email,
-    password,
-    name,
-    surname,
-    phone,
-    city,
-}) {
+export async function SignupApi({ email, password, name, surname, city }) {
     try {
         const response = await fetch('http://localhost:8090/auth/register', {
             method: 'POST',
@@ -14,7 +7,6 @@ export async function SignupApi({
                 password,
                 name,
                 surname,
-                phone,
                 city,
             }),
             headers: {

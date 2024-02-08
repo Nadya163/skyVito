@@ -68,7 +68,6 @@ export const ModalInputLogin = styled.input`
     border-right: none;
     border-bottom: 1px solid #d9d9d9;
     padding: 8px 1px;
-    margin-bottom: 30px;
     font-variant-numeric: lining-nums proportional-nums;
     font-family: Roboto;
     font-size: 18px;
@@ -174,4 +173,13 @@ export const BtnSignupText = styled.p`
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.05px;
+`;
+
+export const ErrorDiv = styled.div`
+    color: red;
+    margin-bottom: 30px;
+`;
+
+export const ErrorDivEnd = styled.div`
+    color: red;
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -12,6 +12,13 @@ export const Wrapper = styled.div`
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 `;
 
 export const ContainerBg = styled.div`
@@ -59,22 +66,35 @@ export const ModalTitle = styled.h3`
 `;
 
 export const ModalBtnClose = styled.div`
-    width: 23px;
-    height: 23px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 47px;
     right: 50px;
     z-index: 3;
     cursor: pointer;
-`;
-
-export const ModalBtnCloseLine = styled.div`
     &:hover {
         &::after,
         &::before {
             background-color: #0080c1;
         }
     }
+`;
+
+export const ModalBtnCloseLine = styled.div`
+    width: 30px;
+    height: 30px;
+    &:hover {
+        &::after,
+        &::before {
+            background-color: #0080c1;
+        }
+    }
+`;
+
+export const BtnCloseImg = styled.img`
+    width: 30px;
+    height: 30px;
 `;
 
 export const ModalFormNewArt = styled.form`
@@ -86,7 +106,7 @@ export const ModalFormNewArt = styled.form`
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: 100%;
+    width: 652px;
 `;
 
 export const FormNewArtBlock = styled.div`
@@ -169,7 +189,7 @@ export const FormNewArtImgCover = styled.div`
     background-color: #f0f0f0;
     z-index: -1;
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         width: 30px;
         height: 2px;
@@ -179,7 +199,7 @@ export const FormNewArtImgCover = styled.div`
         right: calc(50% - (30px / 2));
     }
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         width: 30px;
         height: 2px;
@@ -226,7 +246,7 @@ export const FormNewArtInputPriceCover = styled.div`
     z-index: 0;
     background-color: #ffffff;
     &::after {
-        content: "\A0 \20BD";
+        content: '\A0 \20BD';
         width: 24px;
         height: 24px;
         position: absolute;
@@ -274,15 +294,15 @@ export const ModalScroll = styled.div`
     align-items: flex-start;
     width: 100%;
     overflow-y: auto;
-    scrollbar-color: #ffffff #2e2e2e;
-    scrollbar-width: thin;
+    scrollbar-color: #d9d9d9;
     &::-webkit-scrollbar {
-        width: 0px;
+        width: 6px;
         background-color: #ffffff;
     }
     &::-webkit-scrollbar-thumb {
         background-color: #d9d9d9;
-        border-radius: 0px;
+        height: 432px;
+        border-radius: 10px;
     }
 `;
 

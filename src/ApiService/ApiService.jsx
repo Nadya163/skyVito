@@ -16,20 +16,20 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     });
 
     const result = await baseQuery(args, api, extraOptions);
-    // console.debug("Результат первого запроса", { result });
+    console.debug('Результат первого запроса', { result });
 
     if (result?.error?.status !== 401) {
         return result;
     }
 
     const forceLogout = () => {
-        // console.debug("Принудительная авторизация!");
+        console.debug('Принудительная авторизация!');
         api.dispatch(setAuth(null));
-        window.location.href = '/login';
+        window.location.navigate('/login');
     };
 
     const { auth } = api.getState();
-    // console.debug("Данные пользователя в сторе", { auth });
+    console.debug('Данные пользователя в сторе', { auth });
     if (!auth.refresh) {
         return forceLogout();
     }
@@ -37,22 +37,29 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     const refreshResult = await baseQuery(
         {
             url: '/auth/login/',
-            method: 'POST',
+            method: 'PUT',
             body: {
-                refresh: auth.refresh,
+                access_token: auth.access,
+                refresh_token: auth.refresh,
             },
         },
         api,
         extraOptions,
     );
 
-    // console.debug("Результат запроса на обновление токена", { refreshResult });
+    console.debug('Результат запроса на обновление токена', { refreshResult });
 
-    if (!refreshResult.data.access) {
+    if (!refreshResult.data?.access_token) {
         return forceLogout();
     }
 
-    api.dispatch(setAuth({ ...auth, access: refreshResult.data.access }));
+    api.dispatch(
+        setAuth({
+            ...auth,
+            access: refreshResult.data?.access_token,
+            refresh: refreshResult.data?.refresh_token,
+        }),
+    );
 
     const retryResult = await baseQuery(args, api, extraOptions);
 
@@ -60,7 +67,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
         return forceLogout();
     }
 
-    // console.debug("Повторный запрос завершился успешно");
+    console.debug('Повторный запрос завершился успешно');
 
     return retryResult;
 };
@@ -87,7 +94,7 @@ export const fetchUsersToken = createApi({
                 url: '/auth/login',
                 method: 'PUT',
                 body: JSON.stringify({
-                    refresh: `Bearer ${localStorage.getItem('refresh')}`,
+                    refresh: `Bearer ${localStorage.getItem('refresh_token')}`,
                 }),
                 headers: {
                     'content-type': 'application/json',

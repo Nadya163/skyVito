@@ -8,7 +8,7 @@ export default function AddNewAt() {
                     <S.ModalContent>
                         <S.ModalTitle>Новое объявление</S.ModalTitle>
                         <S.ModalBtnClose>
-                            <S.ModalBtnCloseLine></S.ModalBtnCloseLine>
+                            <S.ModalBtnCloseLine />
                         </S.ModalBtnClose>
                         <S.ModalFormNewArt id="formNewArt" action="#">
                             <S.FormNewArtBlock>
@@ -32,7 +32,7 @@ export default function AddNewAt() {
                                     cols="auto"
                                     rows="10"
                                     placeholder="Введите описание"
-                                ></S.FormNewArtArea>
+                                />
                             </S.FormNewArtBlock>
                             <S.FormNewArtBlock>
                                 <S.FormNewArtP>
@@ -44,23 +44,23 @@ export default function AddNewAt() {
                                 <S.FormNewArtBarImg>
                                     <S.FormNewArtImg>
                                         <img src="" alt="" />
-                                        <S.FormNewArtImgCover></S.FormNewArtImgCover>
+                                        <S.FormNewArtImgCover />
                                     </S.FormNewArtImg>
                                     <S.FormNewArtImg>
                                         <img src="" alt="" />
-                                        <S.FormNewArtImgCover></S.FormNewArtImgCover>
+                                        <S.FormNewArtImgCover />
                                     </S.FormNewArtImg>
                                     <S.FormNewArtImg>
                                         <img src="" alt="" />
-                                        <S.FormNewArtImgCover></S.FormNewArtImgCover>
+                                        <S.FormNewArtImgCover />
                                     </S.FormNewArtImg>
                                     <S.FormNewArtImg>
                                         <img src="" alt="" />
-                                        <S.FormNewArtImgCover></S.FormNewArtImgCover>
+                                        <S.FormNewArtImgCover />
                                     </S.FormNewArtImg>
                                     <S.FormNewArtImg>
                                         <img src="" alt="" />
-                                        <S.FormNewArtImgCover></S.FormNewArtImgCover>
+                                        <S.FormNewArtImgCover />
                                     </S.FormNewArtImg>
                                 </S.FormNewArtBarImg>
                             </S.FormNewArtBlock>
@@ -73,7 +73,7 @@ export default function AddNewAt() {
                                     name="price"
                                     id="formName"
                                 />
-                                <S.FormNewArtInputPriceCover></S.FormNewArtInputPriceCover>
+                                <S.FormNewArtInputPriceCover />
                             </S.FormNewArtBlockPrice>
                             <S.FormNewArtBtnPub type="button" id="btnPublish">
                                 Опубликовать

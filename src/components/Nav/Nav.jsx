@@ -1,9 +1,12 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import * as S from './Nav.style';
+import { selectIsUserLogdIn } from '../../Store/Selector/Selector';
 
 export default function Nav() {
-    const location = useLocation();
     const navigate = useNavigate();
+    const isUserLoginIn = useSelector(selectIsUserLogdIn);
+    console.log(isUserLoginIn);
 
     const handleProfile = () => {
         navigate('/profile');
@@ -16,13 +19,7 @@ export default function Nav() {
     return (
         <S.Header>
             <S.HeaderNav>
-                {location.pathname === '/' ? (
-                    <Link to="/signin">
-                        <S.HeaderBtnMainEnter type="button">
-                            Вход в личный кабинет
-                        </S.HeaderBtnMainEnter>
-                    </Link>
-                ) : (
+                {isUserLoginIn ? (
                     <>
                         <S.HeaderBtnMainEnt
                             type="button"
@@ -37,6 +34,12 @@ export default function Nav() {
                             Личный кабинет
                         </S.HeaderBtnMainPersonalArea>
                     </>
+                ) : (
+                    <Link to="/login">
+                        <S.HeaderBtnMainEnter type="button">
+                            Вход в личный кабинет
+                        </S.HeaderBtnMainEnter>
+                    </Link>
                 )}
             </S.HeaderNav>
         </S.Header>

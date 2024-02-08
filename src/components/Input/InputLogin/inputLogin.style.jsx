@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-export const ContainerSignup = styled.div`
+export const ContainerEnter = styled.div`
     max-width: 100%;
     height: 100vh;
     margin: 0 auto;
@@ -75,7 +75,6 @@ export const ModalInputLogin = styled.input`
     font-weight: 400;
     line-height: 24px;
     letter-spacing: -0.05px;
-    margin-bottom: 30px;
     &::placeholder {
         color: #d9d9d9;
     }
@@ -136,11 +135,50 @@ export const BtnEnterText = styled.p`
     letter-spacing: -0.05px;
 `;
 
+export const ModalBtnSignup = styled.button`
+    width: 278px;
+    height: 52px;
+    background-color: transparent;
+    border: 1px solid #d0cece;
+    border-radius: 6px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    color: #000000;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    &:hover {
+        background-color: #f4f5f6;
+    }
+    &:active {
+        background-color: #d9d9d9;
+    }
+`;
+
+export const BtnSignupText = styled.p`
+    color: #000;
+    font-variant-numeric: lining-nums proportional-nums;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+`;
+
 export const ErrorDiv = styled.div`
     color: red;
     margin-bottom: 30px;
 `;
-
 export const ErrorDivEnd = styled.div`
     color: red;
 `;

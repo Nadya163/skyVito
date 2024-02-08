@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const adsQuery = createApi({
-    reducerPath: 'adsQuery',
-    tagTypes: ['ADS', 'COMMENTS'],
+export const userQuery = createApi({
+    reducerPath: 'userQuery',
+    tagTypes: ['user'],
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8090' }),
     endpoints: (build) => ({
-        getAllAds: build.query({
-            // Получить все объявления
+        getAllUser: build.query({
+            // Получить всех пользователей
             query: () => ({
-                url: '/ads',
+                url: '/user/all',
                 method: 'GET',
             }),
             providesTags: ['ADS'],
@@ -22,18 +22,18 @@ export const adsQuery = createApi({
         //     }),
         //     invalidatesTags: ['ADS'],
         // }),
-        getAllAdsUsers: build.query({
-            // Получить все объявленния текущего пользователя
-            query: (body) => ({
-                url: '/ads/me',
-                method: 'GET',
-                headers: {
-                    'Content-type': 'application/json',
-                },
-                body,
-            }),
-            invalidatesTags: ['ADS'],
-        }),
+        // getAllAdsUsers: build.mutation({
+        //     // Получить все объявленния пользователя
+        //     query: (body) => ({
+        //         url: '/ads/me',
+        //         method: 'GET',
+        //         headers: {
+        //             'Content-type': 'application/json',
+        //         },
+        //         body,
+        //     }),
+        //     invalidatesTags: ['ADS'],
+        // }),
         // createAdsWithoutImg: build.mutation({
         //     // Создать объявление без изображений
         //     query: (body) => ({
@@ -114,6 +114,18 @@ export const adsQuery = createApi({
         //     }),
         //     invalidatesTags: ['ADS'],
         // }),
+        getAllComments: build.query({
+            // Получить все комментарии
+            query: (body) => ({
+                url: '/comments',
+                method: 'GET',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body,
+            }),
+            invalidatesTags: ['ADS'],
+        }),
         getAllCommentsAds: build.query({
             // Получить все комментарии по объявлению
             query: ({ id }) => ({
@@ -142,15 +154,16 @@ export const adsQuery = createApi({
 });
 
 export const {
-    useGetAllAdsQuery,
+    useGetAllUserQuery,
     // useCreateAds,
-    useGetAllAdsUsersQuery,
+    // useGetAllAdsUsers,
     // useCreateAdsWithoutImg,
     // useGetAdsId,
     // useDeleteAdsId,
     // useChangeAds,
     // useUploadAdsImg,
     // useDeleteAdsImg,
+    useGetAllCommentsQuery,
     useGetAllCommentsAdsQuery,
     // useCreateCommentAds,
-} = adsQuery;
+} = userQuery;
