@@ -1,94 +1,74 @@
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as S from './Signin.style';
-import { useGetTokenMutation } from '../../ApiService/ApiService';
-import { setAuth } from '../../Store/Redux/AuthSlice';
-import { SigninApi } from '../../ApiService/ApiAuth';
+/* eslint-disable react/jsx-props-no-spreading */
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import * as S from "./Signin.style";
+import { UserContext } from "../../context";
+import {
+    useGetTokenMutation,
+    useGetUserMutation,
+} from "../../ApiService/ApiService";
+import { setAuth } from "../../Store/Redux/AuthSlice";
 
 export default function Signin() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [getToken] = useGetTokenMutation();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [getTokenAndLogin] = useGetUserMutation();
+    const { changingUserData } = useContext(UserContext);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const {
         register,
         formState: { errors },
         handleSubmit,
         reset,
     } = useForm({
-        mode: 'onBlur',
+        mode: "onBlur",
     });
-    // console.log(getToken);
 
-    const responseToken = () => {
-        getToken({ email, password })
+    const userLogin = async () => {
+        await getTokenAndLogin().then((response) => {
+            localStorage.setItem("user", JSON.stringify(response));
+            // console.log("user", JSON.stringify(response));
+            changingUserData(JSON.parse(localStorage.getItem("user")));
+        });
+    };
+
+    console.log(localStorage.getItem("user"));
+
+    const handleLogin = async () => {
+        await getToken({
+            email,
+            password,
+        })
             .unwrap()
             .then((token) => {
-                console.log(token);
+                // console.log(token);
                 dispatch(
                     setAuth({
                         access: token?.access_token,
                         refresh: token?.refresh_token,
-                        user: JSON.parse(localStorage.getItem('user')),
+                        user: JSON.parse(localStorage.getItem("user")),
                     }),
-                    console.log(token),
                 );
                 localStorage.setItem(
-                    'access_token',
+                    "access_token",
                     token?.access_token.toString(),
                 );
                 localStorage.setItem(
-                    'refresh_token',
+                    "refresh_token",
                     token?.refresh_token.toString(),
                 );
-                console.log(localStorage.getItem('access_token'));
-                console.log(localStorage.getItem('refresh_token'));
+                // console.log(object);
             })
-            .catch((error) => {
-                return error;
-            });
-    };
-
-    console.log();
-
-    const handleLogin = () => {
-        SigninApi({
-            email,
-            password,
-        })
-            .then((response) => {
-                localStorage.setItem('user', JSON.stringify(response));
-                console.log('user', JSON.stringify(response));
-                navigate('/profile');
+            .then(async () => {
+                await userLogin();
+                navigate("/");
                 reset();
-            })
-            .catch((error) => {
-                error(error.message);
-            })
-            .finally(() => {
-                responseToken();
             });
     };
-
-    // const handleLogin = async () => {
-    //     try {
-    //         const response = await SigninApi({
-    //             email,
-    //             password,
-    //         });
-
-    //         localStorage.setItem('user', JSON.stringify(response));
-    //         console.log('user', JSON.stringify(response));
-    //         await responseToken();
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    //     navigate('/profile');
-    //     reset();
-    // };
 
     return (
         <S.Wrapper>
@@ -104,7 +84,7 @@ export default function Signin() {
                             </Link>
                         </S.ModalLogo>
                         <S.ModalInputLogin
-                            {...register('email', {
+                            {...register("email", {
                                 required: true,
                             })}
                             type="email"
@@ -117,7 +97,7 @@ export default function Signin() {
                             )}
                         </S.ErrorDiv>
                         <S.ModalInput
-                            {...register('password', {
+                            {...register("password", {
                                 required: true,
                             })}
                             type="password"

@@ -1,19 +1,19 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import * as S from './Nav.style';
-import { selectIsUserLogdIn } from '../../Store/Selector/Selector';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import * as S from "./Nav.style";
+import { selectIsUserLogdIn } from "../../Store/Selector/Selector";
 
 export default function Nav() {
     const navigate = useNavigate();
     const isUserLoginIn = useSelector(selectIsUserLogdIn);
-    console.log(isUserLoginIn);
+    // console.log(isUserLoginIn);
 
     const handleProfile = () => {
-        navigate('/profile');
+        navigate("/profile");
     };
 
     const handleArticle = () => {
-        navigate('/myarticle');
+        navigate("/myarticle");
     };
 
     return (

@@ -1,8 +1,16 @@
-import { createContext } from 'react';
+import { createContext, useContext } from "react";
 
-const UserContext = createContext({
-    userData: '',
+export const UserContext = createContext({
+    userData: "",
     changingUserData: () => {},
+    changingUserInfo: () => {},
 });
 
-export default UserContext;
+export const useUserContextLoginLogout = () => {
+    const userData = useContext(UserContext);
+    if (!userData) {
+        return;
+    }
+    // eslint-disable-next-line consistent-return
+    return userData;
+};

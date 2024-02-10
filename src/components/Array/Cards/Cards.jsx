@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import * as S from './Cards.style';
-import { formatDate } from '../../../Store/Redux/DataSlise';
-import { selectTimestamp } from '../../../Store/Selector/Selector';
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import * as S from "./Cards.style";
+import { formatDate } from "../../../Store/Redux/DataSlise";
+import { selectTimestamp } from "../../../Store/Selector/Selector";
 
 export default function Cards({ item, handleArticleClick }) {
     const timestamp = useSelector(selectTimestamp);

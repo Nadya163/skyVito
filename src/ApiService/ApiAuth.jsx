@@ -1,7 +1,7 @@
 export async function SignupApi({ email, password, name, surname, city }) {
     try {
-        const response = await fetch('http://localhost:8090/auth/register', {
-            method: 'POST',
+        const response = await fetch("http://localhost:8090/auth/register", {
+            method: "POST",
             body: JSON.stringify({
                 email,
                 password,
@@ -10,7 +10,7 @@ export async function SignupApi({ email, password, name, surname, city }) {
                 city,
             }),
             headers: {
-                'content-type': 'application/json',
+                "content-type": "application/json",
             },
         });
         if (response.status === 400) {
@@ -26,7 +26,7 @@ export async function SignupApi({ email, password, name, surname, city }) {
             }
         }
         if (response.status === 500) {
-            throw new Error('Сервер сломался');
+            throw new Error("Сервер сломался");
         }
         return response.json();
     } catch (error) {
@@ -37,14 +37,14 @@ export async function SignupApi({ email, password, name, surname, city }) {
 
 export async function SigninApi({ email, password }) {
     try {
-        const response = await fetch('http://localhost:8090/auth/login', {
-            method: 'POST',
+        const response = await fetch("http://localhost:8090/auth/login", {
+            method: "POST",
             body: JSON.stringify({
                 email,
                 password,
             }),
             headers: {
-                'content-type': 'application/json',
+                "content-type": "application/json",
             },
         });
         if (response.status === 400) {
@@ -60,7 +60,7 @@ export async function SigninApi({ email, password }) {
             }
         }
         if (response.status === 500) {
-            throw new Error('Сервер сломался');
+            throw new Error("Сервер сломался");
         }
         return response.json();
     } catch (error) {

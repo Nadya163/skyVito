@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import * as S from './Comments.styled';
-import { useGetAllCommentsAdsQuery } from '../../../ApiService/ApiAds';
-import { setAllComments } from '../../../Store/Redux/AdsSlice';
-import { selectTimestamp } from '../../../Store/Selector/Selector';
-import { formatDate } from '../../../Store/Redux/DataSlise';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import * as S from "./Comments.styled";
+import { useGetAllCommentsAdsQuery } from "../../../ApiService/ApiAds";
+import { setAllComments } from "../../../Store/Redux/AdsSlice";
+import { selectTimestamp } from "../../../Store/Selector/Selector";
+import { formatDate } from "../../../Store/Redux/DataSlise";
 
 export default function Comments({ itemId }) {
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function Comments({ itemId }) {
     const { data } = useGetAllCommentsAdsQuery({ id: itemId });
     formatDate(timestamp);
 
-    console.log('data comments', data);
+    console.log("data comments", data);
 
     useEffect(() => {
         dispatch(setAllComments(data));

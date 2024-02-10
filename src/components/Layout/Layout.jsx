@@ -1,6 +1,6 @@
-import { Link, Outlet } from 'react-router-dom';
-import * as S from './Layout.style';
-import Nav from '../Nav/Nav';
+import { Link, Outlet } from "react-router-dom";
+import * as S from "./Layout.style";
+import Nav from "../Nav/Nav";
 
 export default function Layout() {
     return (

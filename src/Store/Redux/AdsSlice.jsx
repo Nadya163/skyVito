@@ -1,17 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     allAds: [],
     articleItem: [],
     articleId: [],
-    searchItem: '',
-    allComments: '',
+    searchItem: "",
+    allComments: "",
     showModal: false,
-    commentsCount: '',
+    commentsCount: "",
 };
 
 const adsSlice = createSlice({
-    name: 'ads',
+    name: "ads",
     initialState,
     reducers: {
         setAllAds: (state, action) => {

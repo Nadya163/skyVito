@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import * as S from './ArticleInfo.style';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import * as S from "./ArticleInfo.style";
 import {
     selectDateString,
     selectShowModal,
     selectTimestamp,
-} from '../../../Store/Selector/Selector';
-import { formatDate, formatDateSeller } from '../../../Store/Redux/DataSlise';
-import { setShowModal } from '../../../Store/Redux/AdsSlice';
-import Reviews from '../../Modal/Reviews';
-import { useGetAllCommentsAdsQuery } from '../../../ApiService/ApiAds';
+} from "../../../Store/Selector/Selector";
+import { formatDate, formatDateSeller } from "../../../Store/Redux/DataSlise";
+import { setShowModal } from "../../../Store/Redux/AdsSlice";
+import Reviews from "../../Modal/Reviews";
+import { useGetAllCommentsAdsQuery } from "../../../ApiService/ApiAds";
 
 export default function ArticleInfo({ item, itemId }) {
     const [showPhone, setShowPhone] = useState(false);

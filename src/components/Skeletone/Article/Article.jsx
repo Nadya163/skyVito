@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
-import LogoButton from '../../LogoButton/LogoButton';
-import * as S from './Article.style';
+import { useParams } from "react-router-dom";
+import LogoButton from "../../LogoButton/LogoButton";
+import * as S from "./Article.style";
 
 export default function Article() {
     const { id } = useParams();

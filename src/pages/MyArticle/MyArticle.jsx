@@ -1,5 +1,5 @@
-import LogoButton from '../../components/LogoButton/LogoButton';
-import * as S from './MyArticle.style';
+import LogoButton from "../../components/LogoButton/LogoButton";
+import * as S from "./MyArticle.style";
 
 export default function MyArticle() {
     return (

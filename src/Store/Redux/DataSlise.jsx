@@ -1,10 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSlice } from "@reduxjs/toolkit";
 
 const dataSlice = createSlice({
-    name: 'data',
+    name: "data",
     initialState: {
         timestamp: 0,
-        dateString: '',
+        dateString: "",
     },
     reducers: {
         updateDataFormate: (state, action) => {
@@ -27,13 +28,13 @@ export const formatDate = (timestamp) => {
     if (dayDiff === 0) {
         // Публикация на сегодняшний день
         const hours = date.getHours();
-        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, "0");
         return `Сегодня в ${hours}:${minutes}`;
     }
     if (dayDiff === 1) {
         // Публикация сделанная вчера
         const hours = date.getHours();
-        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, "0");
         return `Вчера в ${hours}:${minutes}`;
     }
     // Публикация сделанная больше двух дней назад
@@ -41,21 +42,21 @@ export const formatDate = (timestamp) => {
     const monthIndex = date.getMonth();
     const year = date.getFullYear();
     const hours = date.getHours();
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, "0");
 
     const monthNames = [
-        'января',
-        'февраля',
-        'марта',
-        'апреля',
-        'мая',
-        'июня',
-        'июля',
-        'августа',
-        'сентября',
-        'октября',
-        'ноября',
-        'декабря',
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря",
     ];
 
     return `${day} ${monthNames[monthIndex]} ${year}, в ${hours}:${minutes}`;
@@ -63,18 +64,18 @@ export const formatDate = (timestamp) => {
 
 export const getMonthName = (month) => {
     const monthNames = [
-        'января',
-        'февраля',
-        'марта',
-        'апреля',
-        'мая',
-        'июня',
-        'июля',
-        'августа',
-        'сентября',
-        'октября',
-        'ноября',
-        'декабря',
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря",
     ];
 
     return monthNames[month];
@@ -97,13 +98,13 @@ export const formatDateSeller = (dateString) => {
     const diffMonths = (currentYear - year) * 12 + currentMonth - month;
 
     // Определение окончания для слова "месяц"
-    let monthEnding = '';
+    let monthEnding = "";
     if (diffMonths === 1) {
-        monthEnding = 'а';
+        monthEnding = "а";
     } else if (diffMonths > 1 && diffMonths < 5) {
-        monthEnding = 'я';
+        monthEnding = "я";
     } else {
-        monthEnding = 'ев';
+        monthEnding = "ев";
     }
 
     // Формирование строки

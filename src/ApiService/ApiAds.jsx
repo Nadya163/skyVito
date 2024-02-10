@@ -1,17 +1,17 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const adsQuery = createApi({
-    reducerPath: 'adsQuery',
-    tagTypes: ['ADS', 'COMMENTS'],
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8090' }),
+    reducerPath: "adsQuery",
+    tagTypes: ["ADS", "COMMENTS"],
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8090" }),
     endpoints: (build) => ({
         getAllAds: build.query({
             // Получить все объявления
             query: () => ({
-                url: '/ads',
-                method: 'GET',
+                url: "/ads",
+                method: "GET",
             }),
-            providesTags: ['ADS'],
+            providesTags: ["ADS"],
         }),
         // createAds: build.mutation({
         //     // Создать объявение
@@ -22,17 +22,18 @@ export const adsQuery = createApi({
         //     }),
         //     invalidatesTags: ['ADS'],
         // }),
-        getAllAdsUsers: build.query({
-            // Получить все объявленния текущего пользователя
+        getAllAdsUser: build.query({
+            // Получить всех объявленния текущего пользователя
             query: (body) => ({
-                url: '/ads/me',
-                method: 'GET',
+                url: "/ads/me",
+                method: "GET",
                 headers: {
-                    'Content-type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+                    "Content-type": "application/json",
                 },
                 body,
             }),
-            invalidatesTags: ['ADS'],
+            invalidatesTags: ["ADS"],
         }),
         // createAdsWithoutImg: build.mutation({
         //     // Создать объявление без изображений
@@ -118,13 +119,13 @@ export const adsQuery = createApi({
             // Получить все комментарии по объявлению
             query: ({ id }) => ({
                 url: `/ads/${id}/comments`,
-                method: 'GET',
+                method: "GET",
                 headers: {
-                    'Content-type': 'application/json',
+                    "Content-type": "application/json",
                 },
             }),
-            providesTags: (result, error, id) => [{ type: 'Comment', id }],
-            invalidatesTags: [{ type: 'Comment', id: 'LIST' }],
+            providesTags: (result, error, id) => [{ type: "Comment", id }],
+            invalidatesTags: [{ type: "Comment", id: "LIST" }],
         }),
         // createCommentAds: build.mutation({
         //     // Создать комментарий к объявлению
@@ -144,7 +145,7 @@ export const adsQuery = createApi({
 export const {
     useGetAllAdsQuery,
     // useCreateAds,
-    useGetAllAdsUsersQuery,
+    useGetAllAdsUserQuery,
     // useCreateAdsWithoutImg,
     // useGetAdsId,
     // useDeleteAdsId,

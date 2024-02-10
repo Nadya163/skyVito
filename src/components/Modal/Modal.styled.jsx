@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -189,7 +189,7 @@ export const FormNewArtImgCover = styled.div`
     background-color: #f0f0f0;
     z-index: -1;
     &::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 30px;
         height: 2px;
@@ -199,7 +199,7 @@ export const FormNewArtImgCover = styled.div`
         right: calc(50% - (30px / 2));
     }
     &::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 30px;
         height: 2px;
@@ -246,7 +246,7 @@ export const FormNewArtInputPriceCover = styled.div`
     z-index: 0;
     background-color: #ffffff;
     &::after {
-        content: '\A0 \20BD';
+        content: "\A0 \20BD";
         width: 24px;
         height: 24px;
         position: absolute;

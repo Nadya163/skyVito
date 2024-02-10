@@ -102,3 +102,18 @@ export const SellerBtn = styled.button`
         font-weight: 400;
     }
 `;
+
+export const SettingsBtn = styled.button`
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    width: 154px;
+    height: 50px;
+    margin: 10px 7px 0;
+    background-color: #009ee4;
+    border-radius: 6px;
+    border: 1px solid #009ee4;
+    &:hover {
+        background-color: #0080c1;
+    }
+`;

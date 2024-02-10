@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ArticleRight = styled.div`
     max-width: 621px;
@@ -41,10 +41,11 @@ export const ArticleCity = styled.p`
     margin-bottom: 4px;
 `;
 
-export const ArticleLink = styled.button`
+export const ArticleLink = styled.div`
     font-size: 16px;
     line-height: 21px;
     color: #009ee4;
+    cursor: pointer;
 `;
 
 export const ArticlePrice = styled.p`
@@ -64,7 +65,7 @@ export const ArticleBtn = styled.button`
     font-weight: 500;
     line-height: 22px;
     color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     &:hover {
         background-color: #0080c1;
     }

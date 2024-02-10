@@ -1,15 +1,15 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import * as S from './Main.style';
-import Cards from '../../components/Array/Cards/Cards';
-import Search from '../../components/Search/Search';
-import { useGetAllAdsQuery } from '../../ApiService/ApiAds';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import * as S from "./Main.style";
+import Cards from "../../components/Array/Cards/Cards";
+import Search from "../../components/Search/Search";
+import { useGetAllAdsQuery } from "../../ApiService/ApiAds";
 import {
     selectSearchItem,
     selectTimestamp,
-} from '../../Store/Selector/Selector';
-import { formatDate } from '../../Store/Redux/DataSlise';
-import { setAllAds, setArticleItem } from '../../Store/Redux/AdsSlice';
+} from "../../Store/Selector/Selector";
+import { formatDate } from "../../Store/Redux/DataSlise";
+import { setAllAds, setArticleItem } from "../../Store/Redux/AdsSlice";
 
 export default function Main() {
     const dispatch = useDispatch();

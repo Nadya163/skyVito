@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import * as S from './SellerProfileInfo.style';
-import { selectDateString } from '../../../Store/Selector/Selector';
-import { formatDateSeller } from '../../../Store/Redux/DataSlise';
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import * as S from "./SellerProfileInfo.style";
+import { selectDateString } from "../../../Store/Selector/Selector";
+import { formatDateSeller } from "../../../Store/Redux/DataSlise";
 
 export default function SellerProfileInfo({ item }) {
     const [showPhone, setShowPhone] = useState(false);

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainSearch = styled.div`
     width: 100%;
@@ -18,7 +18,7 @@ export const MainSearch = styled.div`
 `;
 
 export const SearchLogoLink = styled.a`
-    ${'' /* display: none; */}
+    ${"" /* display: none; */}
 `;
 
 export const SearchLogoImg = styled.img`
@@ -133,6 +133,6 @@ export const CardsCard = styled.div`
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    ${'' /* flex-direction: column; */}
+    ${"" /* flex-direction: column; */}
 `;
 // export const  = styled.div;

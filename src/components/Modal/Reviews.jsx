@@ -1,16 +1,18 @@
-import { useDispatch } from 'react-redux';
-import * as S from './Modal.styled';
-import { setShowModal } from '../../Store/Redux/AdsSlice';
-import Comments from '../Array/Cooments/Comments';
+import { useDispatch, useSelector } from "react-redux";
+import * as S from "./Modal.styled";
+import { setShowModal } from "../../Store/Redux/AdsSlice";
+import Comments from "../Array/Cooments/Comments";
+import { selectIsUserLogdIn } from "../../Store/Selector/Selector";
 
 export default function Reviews({ itemId }) {
     const dispatch = useDispatch();
+    const isUserLoginIn = useSelector(selectIsUserLogdIn);
 
     const handleShowModal = () => {
         dispatch(setShowModal(false));
     };
 
-    console.log('comments', itemId);
+    console.log("comments", itemId);
 
     return (
         <S.Wrapper>
@@ -30,26 +32,28 @@ export default function Reviews({ itemId }) {
                             </S.ModalBtnCloseLine>
                         </S.ModalBtnClose>
                         <S.ModalScroll>
-                            <S.ModalFormNewArt id="formNewArt" action="#">
-                                <S.FormNewArtBlock>
-                                    <S.FormMewArtLabel htmlFor="text">
-                                        Добавить отзыв
-                                    </S.FormMewArtLabel>
-                                    <S.FormNewArtArea
-                                        name="text"
-                                        id="formArea"
-                                        cols="auto"
-                                        rows="5"
-                                        placeholder="Введите описание"
-                                    />
-                                </S.FormNewArtBlock>
-                                <S.FormNewArtBtnPub
-                                    type="button"
-                                    id="btnPublish"
-                                >
-                                    Опубликовать
-                                </S.FormNewArtBtnPub>
-                            </S.ModalFormNewArt>
+                            {isUserLoginIn && (
+                                <S.ModalFormNewArt id="formNewArt" action="#">
+                                    <S.FormNewArtBlock>
+                                        <S.FormMewArtLabel htmlFor="text">
+                                            Добавить отзыв
+                                        </S.FormMewArtLabel>
+                                        <S.FormNewArtArea
+                                            name="text"
+                                            id="formArea"
+                                            cols="auto"
+                                            rows="5"
+                                            placeholder="Введите описание"
+                                        />
+                                    </S.FormNewArtBlock>
+                                    <S.FormNewArtBtnPub
+                                        type="button"
+                                        id="btnPublish"
+                                    >
+                                        Опубликовать
+                                    </S.FormNewArtBtnPub>
+                                </S.ModalFormNewArt>
+                            )}
                             <Comments itemId={itemId} />
                         </S.ModalScroll>
                     </S.ModalContentReview>

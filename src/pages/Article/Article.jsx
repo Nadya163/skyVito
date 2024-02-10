@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-import * as S from './Article.style';
-import ImgBar from '../../components/ArticleComponents/ImgBar/ImgBar';
-import ArticleInfo from '../../components/ArticleComponents/ArticleInfo/ArticleInfo';
-import LogoButton from '../../components/LogoButton/LogoButton';
-import { useGetAllAdsQuery } from '../../ApiService/ApiAds';
+import { useParams } from "react-router-dom";
+import * as S from "./Article.style";
+import ImgBar from "../../components/ArticleComponents/ImgBar/ImgBar";
+import ArticleInfo from "../../components/ArticleComponents/ArticleInfo/ArticleInfo";
+import LogoButton from "../../components/LogoButton/LogoButton";
+import { useGetAllAdsQuery } from "../../ApiService/ApiAds";
 
 export default function Article() {
     const params = useParams();

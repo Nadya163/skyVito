@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign */
+import { createSlice } from "@reduxjs/toolkit";
 
-const AUTH_INFO = 'auth';
+const AUTH_INFO = "auth";
 
 function getAuthFromLocalStorage() {
     try {
@@ -13,19 +14,19 @@ function getAuthFromLocalStorage() {
 
 const initialState = {
     id: 0,
-    email: '',
-    access: '',
-    refresh: '',
-    name: '',
-    city: '',
-    avatar: '',
-    role: '',
-    phone: '',
-    surname: '',
+    email: "",
+    access: "",
+    refresh: "",
+    name: "",
+    city: "",
+    avatar: "",
+    role: "",
+    phone: "",
+    surname: "",
 };
 
 const authSlice = createSlice({
-    name: 'auth',
+    name: "auth",
     initialState: getAuthFromLocalStorage() ?? initialState,
     reducers: {
         setAuth(state, action) {
@@ -47,15 +48,15 @@ const authSlice = createSlice({
         },
         resetAuth(state) {
             state.id = 0;
-            state.email = '';
-            state.access = '';
-            state.refresh = '';
-            state.name = '';
-            state.city = '';
-            state.avatar = '';
-            state.role = '';
-            state.phone = '';
-            state.surname = '';
+            state.email = "";
+            state.access = "";
+            state.refresh = "";
+            state.name = "";
+            state.city = "";
+            state.avatar = "";
+            state.role = "";
+            state.phone = "";
+            state.surname = "";
             localStorage.removeItem(AUTH_INFO);
         },
     },

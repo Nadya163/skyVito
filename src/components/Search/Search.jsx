@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import * as S from './Search.style';
-import { selectSearchItem } from '../../Store/Selector/Selector';
-import { setSearchItem } from '../../Store/Redux/AdsSlice';
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import * as S from "./Search.style";
+import { selectSearchItem } from "../../Store/Selector/Selector";
+import { setSearchItem } from "../../Store/Redux/AdsSlice";
 
 export default function Search() {
     const dispatch = useDispatch();

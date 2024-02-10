@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainH2 = styled.h2`
     font-style: normal;
@@ -95,7 +95,7 @@ export const SellerBtn = styled.button`
     font-weight: 500;
     line-height: 22px;
     color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     &:hover {
         background-color: #0080c1;
     }

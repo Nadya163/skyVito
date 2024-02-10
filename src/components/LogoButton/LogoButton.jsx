@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import * as S from './LogoButton.style';
+import { useNavigate } from "react-router-dom";
+import * as S from "./LogoButton.style";
 
 export default function LogoButton() {
     const navigate = useNavigate();
 
     const handleMain = () => {
-        navigate('/main');
+        navigate("/main");
     };
     return (
         <S.MainContainer>

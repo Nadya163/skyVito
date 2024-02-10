@@ -1,18 +1,18 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import * as S from './inputLogin.style';
-import { SigninApi } from '../../../ApiService/ApiAuth';
-import { useGetTokenMutation } from '../../../ApiService/ApiService';
-import { setAuth } from '../../../Store/Redux/AuthSlice';
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import * as S from "./inputLogin.style";
+import { SigninApi } from "../../../ApiService/ApiAuth";
+import { useGetTokenMutation } from "../../../ApiService/ApiService";
+import { setAuth } from "../../../Store/Redux/AuthSlice";
 
 export default function LoginInpute() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [getToken] = useGetTokenMutation();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const {
         register,
         formState: { errors },
@@ -20,7 +20,7 @@ export default function LoginInpute() {
         reset,
         setError,
     } = useForm({
-        mode: 'onBlur',
+        mode: "onBlur",
     });
     // console.log(getToken);
 
@@ -33,20 +33,20 @@ export default function LoginInpute() {
                     setAuth({
                         access: token?.access_token,
                         refresh: token?.refresh_token,
-                        user: JSON.parse(localStorage.getItem('user')),
+                        user: JSON.parse(localStorage.getItem("user")),
                     }),
                     console.log(token),
                 );
                 localStorage.setItem(
-                    'access_token',
+                    "access_token",
                     token?.access_token.toString(),
                 );
                 localStorage.setItem(
-                    'refresh_token',
+                    "refresh_token",
                     token?.refresh_token.toString(),
                 );
-                console.log(localStorage.getItem('access_token'));
-                console.log(localStorage.getItem('refresh_token'));
+                console.log(localStorage.getItem("access_token"));
+                console.log(localStorage.getItem("refresh_token"));
             })
             .catch((error) => {
                 return error;
@@ -62,9 +62,9 @@ export default function LoginInpute() {
                 password,
             });
 
-            localStorage.setItem('user', JSON.stringify(response));
-            console.log('user', JSON.stringify(response));
-            navigate('/profile');
+            localStorage.setItem("user", JSON.stringify(response));
+            console.log("user", JSON.stringify(response));
+            navigate("/profile/:id");
 
             await responseToken();
         } catch (error) {
@@ -77,9 +77,9 @@ export default function LoginInpute() {
         const russianPattern = /^[а-яА-ЯёЁ ]+$/;
 
         if (!russianPattern.test(value)) {
-            setError('email', {
-                type: 'manual',
-                message: 'Введите текст на русском языке',
+            setError("email", {
+                type: "manual",
+                message: "Введите текст на русском языке",
             });
         }
     };
@@ -90,7 +90,7 @@ export default function LoginInpute() {
                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
             </S.ModalLogo>
             <S.ModalInputLogin
-                {...register('email', {
+                {...register("email", {
                     required: true,
                 })}
                 type="email"
@@ -101,7 +101,7 @@ export default function LoginInpute() {
                 {errors?.email && <p>Поле обзательное к заполнения</p>}
             </S.ErrorDiv>
             <S.ModalInput
-                {...register('password', {
+                {...register("password", {
                     required: true,
                     validate: validateRussianText,
                 })}

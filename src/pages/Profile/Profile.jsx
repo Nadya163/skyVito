@@ -1,46 +1,86 @@
-import { Link, useNavigate } from 'react-router-dom';
-import LogoButton from '../../components/LogoButton/LogoButton';
-import * as S from './Profile.style';
-import { resetAuth } from '../../Store/Redux/AuthSlice';
-// import {
-//     useGetAllAdsQuery,
-//     useGetAllAdsUsersQuery,
-// } from '../../ApiService/ApiAds';
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import LogoButton from "../../components/LogoButton/LogoButton";
+import * as S from "./Profile.style";
+import { setAuth } from "../../Store/Redux/AuthSlice";
 
-export default function Profile() {
-    const navigate = useNavigate();
-    // const params = useParams();
-    // const { data } = useGetAllAdsQuery(params.id);
-    // const { cardAsdIs } = useGetAllAdsUsersQuery();
-    // const chosenItems = data?.filter((item) => item.id === Number(params.id));
+import {
+    useGetAllAdsQuery,
+    useGetAllAdsUserQuery,
+} from "../../ApiService/ApiAds";
+import {
+    useGetTokenRefreshMutation,
+    useGetUserProfileQuery,
+} from "../../ApiService/ApiService";
+import Cards from "../../components/Array/Cards/Cards";
+import { selectUser } from "../../Store/Selector/Selector";
+import InfoPofile from "../../components/ProfileComponents/InfoProfile/InfoPofile";
+import InputProfile from "../../components/ProfileComponents/InputeProfile/InputeProfile";
 
-    const handleLogout = () => {
-        localStorage.removeItem('user');
-        resetAuth();
-        navigate('/login');
-        console.log(localStorage.removeItem('user'));
-    };
+export default function Profile({ user }) {
+    const dispatch = useDispatch();
+    const params = useParams();
+    const userProfile = useSelector(selectUser);
+    const [getTokenRefresh] = useGetTokenRefreshMutation();
+    const { data: allAds, error, refetch } = useGetAllAdsQuery(params.id);
+    const { cardAsdIs } = useGetAllAdsUserQuery();
+    const { data: userId } = useGetUserProfileQuery();
+    const chosenItems = allAds?.filter((item) => item.id === Number(params.id));
+
+    console.log(cardAsdIs, "item");
+    console.log(user, "name");
+    console.log(userProfile, "nameArray");
+    console.log(userId, "params");
+
+    useEffect(() => {
+        if (!error) return;
+        console.log(error);
+
+        if (error.status === 401) {
+            getTokenRefresh()
+                .unwrap()
+                .then((token) => {
+                    // console.log(token);
+                    dispatch(
+                        setAuth({
+                            access: token?.access_token,
+                            refresh: token?.refresh_token,
+                            user:
+                                // JSON.parse(
+                                localStorage.getItem("user"),
+                            // ),
+                        }),
+                    );
+                    localStorage.setItem(
+                        "access_token",
+                        token?.access_token.toString(),
+                    );
+                    localStorage.setItem(
+                        "refresh_token",
+                        token?.refresh_token.toString(),
+                    );
+                    // console.log(object);
+                })
+                .then(() => {
+                    refetch();
+                });
+        }
+    }, [error]);
 
     return (
         <main>
             <LogoButton />
+            {/* {userProfile?.map((e) => ( */}
             <S.MainContent>
-                <S.MainH2>Здравствуйте, Антон!</S.MainH2>
+                <S.MainH2>Здравствуйте, {userId?.name}!</S.MainH2>
+                <InfoPofile userId={userId} />
                 <S.MainProfile>
                     <S.ProfileContent>
                         <S.ProfileTitle>Настройки профиля</S.ProfileTitle>
                         <S.ProfileSettings>
-                            <S.SettingsLeft>
-                                <S.SettingsImg>
-                                    <Link to="/" target="_self">
-                                        <img src="#" alt="" />
-                                    </Link>
-                                </S.SettingsImg>
-                                <S.SettingsChangePhoto href="" target="_self">
-                                    Заменить
-                                </S.SettingsChangePhoto>
-                            </S.SettingsLeft>
-                            <S.SettingsRight>
+                            <InputProfile userId={userId} />
+                            {/* <S.SettingsRight>
                                 <S.SettingsForm action="#">
                                     <S.SettingsDiv>
                                         <S.SettingsFLabelName htmlFor="fname">
@@ -96,20 +136,21 @@ export default function Profile() {
                                     >
                                         Сохранить
                                     </S.SettingsBtn>
-                                    <S.SettingsBtn
-                                        type="button"
-                                        id="settings-btn"
-                                        onClick={handleLogout}
-                                    >
-                                        Выход
-                                    </S.SettingsBtn>
                                 </S.SettingsForm>
-                            </S.SettingsRight>
+                            </S.SettingsRight> */}
                         </S.ProfileSettings>
                     </S.ProfileContent>
                 </S.MainProfile>
                 <S.MainTitle>Мои товары</S.MainTitle>
+                <S.MainContent>
+                    <S.ContentCards>
+                        {chosenItems?.map((item) => (
+                            <Cards key={item.id} item={item} />
+                        ))}
+                    </S.ContentCards>
+                </S.MainContent>
             </S.MainContent>
+            {/* ))} */}
         </main>
     );
 }

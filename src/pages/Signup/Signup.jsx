@@ -1,21 +1,27 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
-import * as S from './Signup.style';
-import { SignupApi } from '../../ApiService/ApiAuth';
-import { useGetTokenMutation } from '../../ApiService/ApiService';
-import { setAuth } from '../../Store/Redux/AuthSlice';
+/* eslint-disable react/jsx-props-no-spreading */
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import * as S from "./Signup.style";
+import { setAuth } from "../../Store/Redux/AuthSlice";
+import {
+    useGetTokenMutation,
+    useGetUserSignUpMutation,
+} from "../../ApiService/ApiService";
+import { UserContext } from "../../context";
 
 export default function Signup() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { changingUserData } = useContext(UserContext);
     const [getToken] = useGetTokenMutation();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [city, setCity] = useState('');
+    const [getUserSignin] = useGetUserSignUpMutation();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [city, setCity] = useState("");
     const {
         register,
         formState: { errors },
@@ -23,7 +29,7 @@ export default function Signup() {
         // watch,
         reset,
     } = useForm({
-        mode: 'onBlur',
+        mode: "onBlur",
     });
 
     // console.log(getToken);
@@ -36,28 +42,27 @@ export default function Signup() {
                     setAuth({
                         access: token?.access_token,
                         refresh: token?.refresh_token,
+                        user: JSON.parse(localStorage.getItem("user")),
                     }),
                 );
                 localStorage.setItem(
-                    'access_token',
+                    "access_token",
                     token?.access_token.toString(),
                 );
                 localStorage.setItem(
-                    'refresh_token',
+                    "refresh_token",
                     token?.refresh_token.toString(),
                 );
-                console.log(localStorage.getItem('access_token'));
-                console.log(localStorage.getItem('refresh_token'));
+                console.log(localStorage.getItem("access_token"));
+                console.log(localStorage.getItem("refresh_token"));
             })
             .catch((error) => {
                 return error;
             });
     };
 
-    console.log();
-
     const handleRegister = async () => {
-        await SignupApi({
+        await getUserSignin({
             email,
             password,
             name,
@@ -65,18 +70,41 @@ export default function Signup() {
             city,
         })
             .then((response) => {
-                localStorage.setItem('user', JSON.stringify(response));
-                console.log('user', JSON.stringify(response));
+                localStorage.setItem("user", JSON.stringify(response));
+                console.log("user", JSON.stringify(response));
+                changingUserData(JSON.parse(localStorage.getItem("user")));
+                responseToken();
+                navigate("/profile");
+                reset();
             })
             .catch((error) => {
                 error(error.message);
-            })
-            .finally(() => {
-                responseToken();
             });
-        navigate('/profile');
-        reset();
     };
+
+    // console.log();
+
+    // const handleRegister = async () => {
+    //     await SignupApi({
+    //         email,
+    //         password,
+    //         name,
+    //         surname,
+    //         city,
+    //     })
+    //         .then((response) => {
+    //             localStorage.setItem('user', JSON.stringify(response));
+    //             console.log('user', JSON.stringify(response));
+    //         })
+    //         .catch((error) => {
+    //             error(error.message);
+    //         })
+    //         .finally(() => {
+    //             responseToken();
+    //         });
+    //     navigate('/profile');
+    //     reset();
+    // };
 
     // const validPassword = (value) => {
     //     const password = watch('password');
@@ -90,7 +118,7 @@ export default function Signup() {
         <S.Wrapper>
             <S.ContainerSignup>
                 <S.ModalBlock>
-                    <S.ModalFormLogin onSubmit={handleSubmit}>
+                    <S.ModalFormLogin onSubmit={handleSubmit(handleRegister)}>
                         <S.ModalLogo>
                             <Link to="/login">
                                 <S.ModalLogoImg
@@ -100,7 +128,7 @@ export default function Signup() {
                             </Link>
                         </S.ModalLogo>
                         <S.ModalInputLogin
-                            {...register('email', {
+                            {...register("email", {
                                 required: true,
                             })}
                             type="email"
@@ -113,8 +141,8 @@ export default function Signup() {
                             )}
                         </S.ErrorDiv>
                         <S.ModalInputLogin
-                            {...register('password', {
-                                required: 'Поле обязательно к заполнению.',
+                            {...register("password", {
+                                required: "Поле обязательно к заполнению.",
                                 onChange: (event) => {
                                     setPassword(event.target.value);
                                 },
@@ -129,8 +157,8 @@ export default function Signup() {
                             </S.ErrorDivEnd>
                         )}
                         <S.ModalInputLogin
-                            {...register('repeatPassword', {
-                                required: 'Поле обязательно к заполнению.',
+                            {...register("repeatPassword", {
+                                required: "Поле обязательно к заполнению.",
                                 onChange: (event) => event.target.value,
                                 // validate: validPassword,
                             })}
@@ -141,7 +169,7 @@ export default function Signup() {
                         {errors?.repeatPassword && (
                             <S.ErrorDiv>
                                 {errors?.repeatPassword?.message ||
-                                    'Пароли не совпадают.'}
+                                    "Пароли не совпадают."}
                             </S.ErrorDiv>
                         )}
                         <S.ModalInputLogin
@@ -165,10 +193,7 @@ export default function Signup() {
                             placeholder="Город (необязательно)"
                             onChange={(e) => setCity(e.target.value)}
                         />
-                        <S.ModalBtnEnter
-                            id="SignUpEnter"
-                            onClick={handleRegister}
-                        >
+                        <S.ModalBtnEnter id="SignUpEnter" type="submit">
                             <S.BtnEnterText>Зарегистрироваться</S.BtnEnterText>
                         </S.ModalBtnEnter>
                     </S.ModalFormLogin>

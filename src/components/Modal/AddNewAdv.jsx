@@ -1,4 +1,4 @@
-import * as S from './Modal.styled';
+import * as S from "./Modal.styled";
 
 export default function AddNewAt() {
     return (
@@ -36,7 +36,7 @@ export default function AddNewAt() {
                             </S.FormNewArtBlock>
                             <S.FormNewArtBlock>
                                 <S.FormNewArtP>
-                                    Фотографии товара{' '}
+                                    Фотографии товара{" "}
                                     <S.FormNewArtPSpan>
                                         не более 5 фотографий
                                     </S.FormNewArtPSpan>

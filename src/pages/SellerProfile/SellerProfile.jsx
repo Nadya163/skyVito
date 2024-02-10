@@ -1,9 +1,9 @@
-import { useParams } from 'react-router-dom';
-import Cards from '../../components/Array/Cards/Cards';
-import LogoButton from '../../components/LogoButton/LogoButton';
-import * as S from './SellerProfile.style';
-import SellerProfileInfo from '../../components/ArticleComponents/SellerProfileInfo/SellerProfileInfo';
-import { useGetAllAdsQuery } from '../../ApiService/ApiAds';
+import { useParams } from "react-router-dom";
+import Cards from "../../components/Array/Cards/Cards";
+import LogoButton from "../../components/LogoButton/LogoButton";
+import * as S from "./SellerProfile.style";
+import SellerProfileInfo from "../../components/ArticleComponents/SellerProfileInfo/SellerProfileInfo";
+import { useGetAllAdsQuery } from "../../ApiService/ApiAds";
 
 export default function SellerProfile() {
     const params = useParams();
@@ -17,8 +17,8 @@ export default function SellerProfile() {
         (ad) => ad?.user?.id === parseInt(sellerId, 10),
     );
 
-    console.log('Item', sellerId);
-    console.log('product', sellerAdsId);
+    console.log("Item", sellerId);
+    console.log("product", sellerAdsId);
 
     return (
         <main>

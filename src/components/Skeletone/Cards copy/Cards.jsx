@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import * as S from './Cards.style';
+import { Link } from "react-router-dom";
+import * as S from "./Cards.style";
 
 export default function Cards() {
     return (

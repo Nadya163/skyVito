@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const MainArtic = styled.div`
     max-width: 1178px;
@@ -162,7 +162,7 @@ export const ArticleBtnRedact = styled.button`
     font-weight: 500;
     line-height: 22px;
     color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     width: 189px;
     margin-right: 10px;
     &:hover {
@@ -179,7 +179,7 @@ export const ArticleBtnRemove = styled.button`
     font-weight: 500;
     line-height: 22px;
     color: #ffffff;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
     width: 225px;
     margin-right: 10px;
     &:hover {

@@ -1,16 +1,17 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { fetchUsersToken } from '../ApiService/ApiService';
-import { authReducer } from './Redux/AuthSlice';
-import { adsReducer } from './Redux/AdsSlice';
-import { adsQuery } from '../ApiService/ApiAds';
-import { dataReducer } from './Redux/DataSlise';
-import { userQuery } from '../ApiService/ApiUser';
+import { configureStore } from "@reduxjs/toolkit";
+import { fetchUsersToken, userQuery } from "../ApiService/ApiService";
+import { authReducer } from "./Redux/AuthSlice";
+import { adsReducer } from "./Redux/AdsSlice";
+import { adsQuery } from "../ApiService/ApiAds";
+import { dataReducer } from "./Redux/DataSlise";
+import { userReducer } from "./Redux/UserSlise";
 
 export const store = configureStore({
     reducer: {
         ads: adsReducer,
         data: dataReducer,
         auth: authReducer,
+        user: userReducer,
         [fetchUsersToken.reducerPath]: fetchUsersToken.reducer,
         [adsQuery.reducerPath]: adsQuery.reducer,
         [userQuery.reducerPath]: userQuery.reducer,

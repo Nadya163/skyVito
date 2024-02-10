@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import * as S from './ImgBar.style';
+import { useState } from "react";
+import * as S from "./ImgBar.style";
 
 export default function ImgBar({ item }) {
     const [selectImg, setSelectImg] = useState(item.images[0]?.url);
