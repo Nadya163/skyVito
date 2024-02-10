@@ -44,10 +44,17 @@
         "prettier/prettier": [
             "error",
             {
-                "semi": "never",
+                "prettier/prettier": ["error", { "endOfLine": "auto" }],
                 "singlequote": true,
                 "parser": "flow",
-                "endOfLine": "auto"
+                "endOfLine": "auto",
+                "react/jsx-props-no-spreading": ["<enabled>", {
+                    "html": "ignore",
+                    "react": "ignore",
+                    "custom": "ignore",
+                    "explicitSpread": "ignore",
+                    "exceptions": []
+                }]
             }
         ]
     }
